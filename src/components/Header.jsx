@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 
 export default function Header() {
     const [scrolled, setScrolled] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false)
+
     const location = useLocation()
 
     const isHome = location.pathname === "/"
@@ -47,7 +49,7 @@ export default function Header() {
                     />
                 </Link>
 
-                <nav className="space-x-6 text-md text-gray-700">
+                <nav className="hidden md:flex space-x-6 text-md text-gray-700">
                     <Link className="font-semibold" to="/about">About</Link>
                     <Link className="font-semibold" to="/team">Team</Link>
                     <Link className="font-semibold" to="/services">What We Do</Link>
@@ -55,7 +57,28 @@ export default function Header() {
                     <Link className="font-semibold" to="/join">Join Us</Link>
                     <Link className="font-semibold" to="/contact">Contact</Link>
                 </nav>
+
+                {/* Mobile Hamburger */}
+                <button
+                    className="md:hidden text-2xl"
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    aria-label="Toggle menu"
+                >
+                    ☰
+                </button>
             </div>
+
+            {/* Mobile Menu */}
+            {menuOpen && (
+                <div className="md:hidden bg-white border-t px-6 py-4 space-y-4">
+                    <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+                    <Link to="/team" onClick={() => setMenuOpen(false)}>Team</Link>
+                    <Link to="/services" onClick={() => setMenuOpen(false)}>What We Do</Link>
+                    <Link to="/work" onClick={() => setMenuOpen(false)}>Our Work</Link>
+                    <Link to="/join" onClick={() => setMenuOpen(false)}>Join Us</Link>
+                    <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+                </div>
+            )}
         </header>
     )
 }
