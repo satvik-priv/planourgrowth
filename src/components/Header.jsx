@@ -70,7 +70,7 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="md:hidden bg-white border-t px-6 py-4 space-y-4">
+                <div className="md:hidden bg-white border-t px-6 py-4 flex flex-col space-y-4">
                     <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
                     <Link to="/team" onClick={() => setMenuOpen(false)}>Team</Link>
                     <Link to="/services" onClick={() => setMenuOpen(false)}>What We Do</Link>
